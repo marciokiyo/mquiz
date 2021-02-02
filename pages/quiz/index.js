@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import db from '../db.json';
-import QuizLogo from '../src/components/QuizLogo';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import QuestionWidget from '../src/components/QuestionWidget';
-import LoadingWidget from '../src/components/LoadingWidget';
-import Widget from '../src/components/Widget';
+import db from '../../db.json';
+import QuizLogo from '../../src/components/QuizLogo';
+import QuizBackground from '../../src/components/QuizBackground';
+import QuizContainer from '../../src/components/QuizContainer';
+import QuestionWidget from '../../src/components/QuestionWidget';
+import LoadingWidget from '../../src/components/LoadingWidget';
+import Widget from '../../src/components/Widget';
 
 function ResultWidget({ results }) {
   const rightAnswer = results.filter((res) => res).length;
@@ -43,7 +43,7 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 export default function QuizPage() {
-  const [screenState, setScreenState] = React.useState(screenStates.RESULT);
+  const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
@@ -66,7 +66,7 @@ export default function QuizPage() {
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
     }, 1 * 1000);
-  // nasce === didMount
+    // nasce === didMount
   }, []);
 
   function handleSubmitQuiz() {
